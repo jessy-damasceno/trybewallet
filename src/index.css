@@ -17,8 +17,8 @@
 }
 
 body {
+  /* background-color: var(--alt-bg-color); */
   background-color: var(--bg-color);
-  background-image: url('./assets/wood-bg.jpg');
   background-size: cover;
   background-position: center;
   background-origin: content-box;
