@@ -18,4 +18,11 @@
 
 body {
   background-color: var(--bg-color);
+  background-image: url('./assets/wood-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-size: cover;
+	min-height:100vh;
 }
