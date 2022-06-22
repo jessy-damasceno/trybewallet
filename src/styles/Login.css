@@ -61,18 +61,9 @@
 }
 
 .disabled {
+  cursor: auto;
   opacity: 0.5;
 }
-
-/* .btn:after {
-  background: rgba(0, 0, 0, 0.5);
-  content: '';
-  height: 100%;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-} */
 
 .input-container input:focus ~ label , .input-container input:valid ~ label {
   font-size: 12px;
