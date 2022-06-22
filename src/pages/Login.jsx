@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setEmail } from '../redux/actions';
+import { setEmail } from '../actions';
 // import TrybeLogo from '../components/TrybeLogo';
 import '../styles/Login.css';
 
@@ -19,10 +19,11 @@ class Login extends React.Component {
   }
 
   handleClick = () => {
-    const { setEmailToRedux } = this.props;
+    const { setEmailToRedux, history } = this.props;
     const { email } = this.state;
 
     setEmailToRedux(email);
+    history.push('/carteira');
   }
 
   render() {
@@ -84,4 +85,7 @@ export default connect(null, mapDispatchToProps)(Login);
 
 Login.propTypes = {
   setEmailToRedux: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
