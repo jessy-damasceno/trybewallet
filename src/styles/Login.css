@@ -1,0 +1,10 @@
+.login__page {
+  align-items: center;
+  background-color: var(--alt-bg-color);
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  margin: auto;
+  padding: 0;
+  width: 50vw;
+}
