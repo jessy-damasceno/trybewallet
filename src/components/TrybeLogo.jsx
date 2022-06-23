@@ -10,8 +10,8 @@ export default class TrybeLogo extends React.Component {
         <div>
           <img src={ TRYBE_LOGO } alt="Logo da Trybe" />
           <img src={ CASH } alt="Dinheiro em papel e moedas" />
+          <span>wallet</span>
         </div>
-        <span>wallet</span>
       </div>
     );
   }
