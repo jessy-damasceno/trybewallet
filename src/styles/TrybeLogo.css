@@ -1,5 +1,5 @@
 .trybe__wallet__logo {
-  color: var(--text-color);
+  color: var(--alt-text-color);
   display: flex;
   flex-direction: column;
   max-width: 100px;
