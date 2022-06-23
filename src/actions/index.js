@@ -27,12 +27,12 @@ export const addExpense = (expense) => (dispatch) => {
   fetch(URL).then((response) => (
     response
       .json()
-      .then((data) => dispatch(() => ({
+      .then((data) => dispatch({
         type: ADD_EXPENSE,
         payload: {
           ...expense,
           exchangeRates: data,
         },
-      })))
+      }))
   ));
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
+import { addExpense } from '../actions';
 
 const INITIAL_STATE = {
   id: 0,
@@ -23,6 +24,10 @@ class ExpensesForms extends React.Component {
   }
 
   handleClick = () => {
+    const { addExpenseToGlobalState } = this.props;
+
+    addExpenseToGlobalState(this.state);
+
     this.setState(({ id }) => ({ ...INITIAL_STATE, id: id + 1 }));
   }
 
@@ -133,8 +138,13 @@ const mapStateToProps = ({ wallet }) => ({
   currencies: wallet.currencies,
 });
 
-export default connect(mapStateToProps, null)(ExpensesForms);
+const mapDispatchToProps = (dispatch) => ({
+  addExpenseToGlobalState: (expense) => dispatch(addExpense(expense)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpensesForms);
 
 ExpensesForms.propTypes = {
   currencies: Proptypes.arrayOf(Proptypes.string).isRequired,
+  addExpenseToGlobalState: Proptypes.func.isRequired,
 };
