@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
 
 const INITIAL_STATE = {
+  id: 0,
   value: '',
   description: '',
   currency: 'USD',
@@ -19,6 +20,10 @@ class ExpensesForms extends React.Component {
     const { name, value } = target;
 
     this.setState({ [name]: value });
+  }
+
+  handleClick = () => {
+    this.setState(({ id }) => ({ ...INITIAL_STATE, id: id + 1 }));
   }
 
   render() {
@@ -112,6 +117,13 @@ class ExpensesForms extends React.Component {
             </select>
           </label>
         </div>
+
+        <button
+          type="button"
+          onClick={ this.handleClick }
+        >
+          Adicionar despesa
+        </button>
       </form>
     );
   }
