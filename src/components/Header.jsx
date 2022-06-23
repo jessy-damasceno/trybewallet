@@ -9,11 +9,11 @@ class Header extends React.Component {
   render() {
     const { email, expenses } = this.props;
 
-    const total = expenses?.reduce((acc, expense) => {
+    const total = expenses.reduce((acc, expense) => {
       const { value, currency, exchangeRates } = expense;
       const { ask } = exchangeRates[currency];
 
-      acc += (value * ask);
+      acc += (parseFloat(value) * ask);
       return acc;
     }, 0).toFixed(2);
 
