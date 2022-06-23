@@ -10,7 +10,7 @@ export default class TableItem extends React.Component {
         <td>{description}</td>
         <td>{tag}</td>
         <td>{method}</td>
-        <td>{value}</td>
+        <td>{Number(value).toFixed(2)}</td>
         <td>{name.split('/')[0]}</td>
         <td>{Number(ask).toFixed(2)}</td>
         <td>{(value * ask).toFixed(2)}</td>
@@ -28,7 +28,7 @@ TableItem.propTypes = {
   value: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
   exchangeRates: PropTypes.objectOf({
-    name: PropTypes.string.isRequired,
-    ask: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    ask: PropTypes.string,
   }).isRequired,
 };
