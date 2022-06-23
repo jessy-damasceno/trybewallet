@@ -10,28 +10,30 @@ class Header extends React.Component {
     const { email } = this.props;
     return (
       <header>
-        <TrybeLogo />
-        <section className="header__wallet_exchange">
+        <div className="header__wallet_exchange container">
+          <TrybeLogo />
+          <p data-testid="email-field">{email}</p>
+        </div>
+
+        <div className="header__wallet_exchange">
+          <section className="header__wallet_field">
+            <div className="total_field red">
+              <i className="ph-folder-minus" />
+            </div>
+            <span data-testid="total-field">Despesa Total: 20000000000</span>
+          </section>
+
           <section className="header__wallet_field">
             <div className="currency_field yellow">
               <i className="ph-coins" />
             </div>
             <span data-testid="header-currency-field">BRL</span>
           </section>
-
-          <section className="header__wallet_field">
-            <div className="total_field red">
-              <i className="ph-folder-minus" />
-            </div>
-            <span data-testid="total-field">0</span>
-          </section>
-
-          <span data-testid="email-field">{email}</span>
           <Link to="/" className="header_exit circle">
             <i className="ph-sign-out" />
             <span>Sair</span>
           </Link>
-        </section>
+        </div>
       </header>
     );
   }

@@ -21,6 +21,13 @@ header {
   width: fit-content;
 }
 
+.container {
+  align-items: baseline;
+  font-size: 0.8rem;
+  height: 50px;
+  justify-content: space-between;
+}
+
 .header_exit {
   background-color: var(--primary-color);
   color: var(--alt-text-color);
@@ -72,9 +79,11 @@ i {
   color: var(--alt-text-color);
   display: flex;
   font-size: 0.8rem;
+  gap: 8px;
   justify-content: space-between;
+  max-width: 14rem;
+  min-width: 5.2rem;
   padding: 2px;
-  width: 5.2rem;
 }
 
 .header__wallet_field i {
