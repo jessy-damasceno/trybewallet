@@ -32,8 +32,8 @@ class Wallet extends React.Component {
               <th>Moeda de conversão</th>
               <th>Editar/Excluir</th>
             </tr>
-            {expenses.map(((expense, index) => (
-              <TableItem key={ index } { ...expense } />
+            {expenses.map(((expense) => (
+              <TableItem key={ expense.id } { ...expense } />
             )))}
           </table>
         </div>

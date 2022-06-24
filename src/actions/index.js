@@ -1,6 +1,7 @@
 export const EMAIL_TYPE = 'EMAIL_TYPE';
 export const CURRENCY_TYPE = 'CURRENCY_TYPE';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
+export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
 
 const URL = 'https://economia.awesomeapi.com.br/json/all';
 
@@ -36,3 +37,8 @@ export const addExpense = (expense) => (dispatch) => {
       }))
   ));
 };
+
+export const removeExpense = (id) => ({
+  type: REMOVE_EXPENSE,
+  id,
+});
