@@ -21,11 +21,18 @@ class TableItem extends React.Component {
         <td>
           {/* <button type="button" onClick={ removeExpenseAction() }>Editar</button> */}
           <button
+            data-testid="edit-btn"
+            type="button"
+            onClick={ () => console.log(id) }
+          >
+            <i className="ph-pencil-simple-line" />
+          </button>
+          <button
             data-testid="delete-btn"
             type="button"
             onClick={ () => removeExpenseAction(id) }
           >
-            Excluir
+            <i className="ph-trash-simple" />
           </button>
         </td>
       </tr>
@@ -41,13 +48,13 @@ export default connect(null, mapDispatchToProps)(TableItem);
 
 TableItem.propTypes = {
   description: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   tag: PropTypes.string.isRequired,
   method: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   removeExpenseAction: PropTypes.func.isRequired,
   currency: PropTypes.string.isRequired,
-  exchangeRates: PropTypes.objectOf({
+  exchangeRates: PropTypes.shape({
     name: PropTypes.string,
     ask: PropTypes.string,
   }).isRequired,

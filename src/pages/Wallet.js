@@ -19,8 +19,8 @@ class Wallet extends React.Component {
       <>
         <Header />
         <ExpensesForms />
-        <div className="table">
-          <table>
+        <table>
+          <thead>
             <tr>
               <th>Descrição</th>
               <th>Tag</th>
@@ -32,11 +32,13 @@ class Wallet extends React.Component {
               <th>Moeda de conversão</th>
               <th>Editar/Excluir</th>
             </tr>
+          </thead>
+          <tbody>
             {expenses.map(((expense) => (
               <TableItem key={ expense.id } { ...expense } />
             )))}
-          </table>
-        </div>
+          </tbody>
+        </table>
       </>
     );
   }
