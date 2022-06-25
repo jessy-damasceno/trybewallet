@@ -4,6 +4,7 @@ import { CURRENCY_TYPE, ADD_EXPENSE, REMOVE_EXPENSE,
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
+  expenseToEdit: {},
   editor: false, // valor booleano que indica se uma despesa está sendo editada
   idToEdit: 0, // valor numérico que armazena o id da despesa que está sendo editada
 };
@@ -32,7 +33,8 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       editor: true,
-      idToEdit: action.payload,
+      idToEdit: action.idToEdit,
+      expenseToEdit: action.expense,
     };
 
   case UPDATE_EXPENSE:

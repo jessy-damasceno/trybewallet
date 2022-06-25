@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeExpense } from '../actions';
+import { removeExpense, editExpense } from '../actions';
 
 class TableItem extends React.Component {
   render() {
     const { description, tag, method, id,
-      value, currency, exchangeRates, removeExpenseAction } = this.props;
+      value, currency, exchangeRates,
+      removeExpenseAction, editExpenseAction } = this.props;
     const { name, ask } = exchangeRates[currency];
+    const expense = { id, value, description, currency, method, tag };
     return (
       <tr>
         <td>{description}</td>
@@ -19,11 +21,10 @@ class TableItem extends React.Component {
         <td>{(value * ask).toFixed(2)}</td>
         <td>Real</td>
         <td>
-          {/* <button type="button" onClick={ removeExpenseAction() }>Editar</button> */}
           <button
             data-testid="edit-btn"
             type="button"
-            onClick={ () => console.log(id) }
+            onClick={ () => editExpenseAction(id, expense) }
           >
             <i className="ph-pencil-simple-line" />
           </button>
@@ -42,6 +43,7 @@ class TableItem extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   removeExpenseAction: (param) => dispatch(removeExpense(param)),
+  editExpenseAction: (idToEdit, expense) => dispatch(editExpense(idToEdit, expense)),
 });
 
 export default connect(null, mapDispatchToProps)(TableItem);
@@ -53,6 +55,7 @@ TableItem.propTypes = {
   method: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   removeExpenseAction: PropTypes.func.isRequired,
+  editExpenseAction: PropTypes.func.isRequired,
   currency: PropTypes.string.isRequired,
   exchangeRates: PropTypes.shape({
     name: PropTypes.string,

@@ -17,6 +17,15 @@ class ExpensesForms extends React.Component {
     ...INITIAL_STATE,
   };
 
+  shouldComponentUpdate(nextProps) { // nextProps, nextState
+    const { editor, idToEdit } = nextProps;
+
+    if (editor || idToEdit) {
+      // this.setState()
+    }
+    return true;
+  }
+
   handleChange = ({ target }) => {
     const { name, value } = target;
 
@@ -24,16 +33,19 @@ class ExpensesForms extends React.Component {
   }
 
   handleClick = () => {
-    const { addExpenseToGlobalState } = this.props;
+    const { addExpenseToGlobalState, editor } = this.props;
 
-    addExpenseToGlobalState(this.state);
-
-    this.setState(({ id }) => ({ ...INITIAL_STATE, id: id + 1 }));
+    if (!editor) {
+      addExpenseToGlobalState(this.state);
+      this.setState(({ id }) => ({ ...INITIAL_STATE, id: id + 1 }));
+    }
   }
 
   render() {
     const { value, description, currency, method, tag } = this.state;
-    const { currencies } = this.props;
+    const { currencies, editor } = this.props;
+
+    console.log(currencies);
 
     return (
       <form>
@@ -127,7 +139,7 @@ class ExpensesForms extends React.Component {
           type="button"
           onClick={ this.handleClick }
         >
-          Adicionar despesa
+          {editor ? 'Editar despesa' : 'Adicionar despesa'}
         </button>
       </form>
     );
@@ -136,6 +148,8 @@ class ExpensesForms extends React.Component {
 
 const mapStateToProps = ({ wallet }) => ({
   currencies: wallet.currencies,
+  editor: wallet.editor,
+  idToEdit: wallet.idToEdit,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -147,4 +161,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(ExpensesForms);
 ExpensesForms.propTypes = {
   currencies: Proptypes.arrayOf(Proptypes.string).isRequired,
   addExpenseToGlobalState: Proptypes.func.isRequired,
+  editor: Proptypes.bool.isRequired,
+  idToEdit: Proptypes.number.isRequired,
 };
