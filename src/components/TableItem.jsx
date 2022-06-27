@@ -9,7 +9,7 @@ class TableItem extends React.Component {
       value, currency, exchangeRates,
       removeExpenseAction, editExpenseAction } = this.props;
     const { name, ask } = exchangeRates[currency];
-    const expense = { id, value, description, currency, method, tag };
+    const expense = { id, value, description, currency, method, tag, exchangeRates };
     return (
       <tr>
         <td>{description}</td>

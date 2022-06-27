@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Proptypes from 'prop-types';
-import { addExpense } from '../actions';
+import PropTypes from 'prop-types';
+import { addExpense, updateExpense } from '../actions';
 
 const INITIAL_STATE = {
   id: 0,
@@ -17,14 +17,14 @@ class ExpensesForms extends React.Component {
     ...INITIAL_STATE,
   };
 
-  shouldComponentUpdate(nextProps) { // nextProps, nextState
-    const { editor, idToEdit } = nextProps;
+  // shouldComponentUpdate(nextProps) {
+  //   const { editor, expenseToEdit } = nextProps;
 
-    if (editor || idToEdit) {
-      // this.setState()
-    }
-    return true;
-  }
+  //   if (editor && this.state !== expenseToEdit) {
+  //     this.setState({ ...expenseToEdit });
+  //   }
+  //   return true;
+  // }
 
   handleChange = ({ target }) => {
     const { name, value } = target;
@@ -35,7 +35,13 @@ class ExpensesForms extends React.Component {
   handleClick = () => {
     const { addExpenseToGlobalState, editor } = this.props;
 
-    if (!editor) {
+    if (editor) {
+      const { expenseToEdit, updateExpenseAction, idToEdit: id } = this.props;
+      console.log(expenseToEdit);
+      updateExpenseAction({ ...expenseToEdit, ...this.state, id,
+      });
+      this.setState({ ...INITIAL_STATE });
+    } else {
       addExpenseToGlobalState(this.state);
       this.setState(({ id }) => ({ ...INITIAL_STATE, id: id + 1 }));
     }
@@ -44,8 +50,6 @@ class ExpensesForms extends React.Component {
   render() {
     const { value, description, currency, method, tag } = this.state;
     const { currencies, editor } = this.props;
-
-    console.log(currencies);
 
     return (
       <form>
@@ -150,17 +154,31 @@ const mapStateToProps = ({ wallet }) => ({
   currencies: wallet.currencies,
   editor: wallet.editor,
   idToEdit: wallet.idToEdit,
+  expenseToEdit: wallet.expenseToEdit,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addExpenseToGlobalState: (expense) => dispatch(addExpense(expense)),
+  updateExpenseAction: (expense) => dispatch(updateExpense(expense)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpensesForms);
 
 ExpensesForms.propTypes = {
-  currencies: Proptypes.arrayOf(Proptypes.string).isRequired,
-  addExpenseToGlobalState: Proptypes.func.isRequired,
-  editor: Proptypes.bool.isRequired,
-  idToEdit: Proptypes.number.isRequired,
+  currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+  addExpenseToGlobalState: PropTypes.func.isRequired,
+  updateExpenseAction: PropTypes.func.isRequired,
+  editor: PropTypes.bool.isRequired,
+  expenseToEdit: PropTypes.shape({
+    description: PropTypes.string,
+    id: PropTypes.number,
+    tag: PropTypes.string,
+    method: PropTypes.string,
+    value: PropTypes.string,
+  }),
+  idToEdit: PropTypes.number.isRequired,
+};
+
+ExpensesForms.defaultProps = {
+  expenseToEdit: {},
 };

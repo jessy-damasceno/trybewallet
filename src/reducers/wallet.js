@@ -40,7 +40,14 @@ const wallet = (state = INITIAL_STATE, action) => {
   case UPDATE_EXPENSE:
     return {
       ...state,
-      expenses: action.payload,
+      expenses: state.expenses.map((item) => {
+        if (item.id === action.payload.id) {
+          return action.payload;
+        }
+        return item;
+      }),
+      expenseToEdit: {},
+      editor: false,
     };
 
   default:
