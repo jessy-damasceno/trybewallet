@@ -1,20 +1,26 @@
 .form {
   align-items: center;
+  color: var(--text-color);
   display: flex;
-  margin: auto;
-  max-width: 1300px;
+  justify-content: space-evenly;
+  margin: 14px auto;
+  padding: 8px;
 }
 
 .form-btn {
-  background-color: #e74c3c;
+  align-items: center;
+  background-color: var(--alt-bg-color);
   border: 0;
   border-radius: 2px;
-  color: var(--text-color);
+  color: var(--alt-text-color);
   cursor: pointer;
+  display: flex;
+  font-weight: 500;
+  height: 60px;
+  justify-content: center;
   outline: none;
   padding: 10px 20px;
-  position: relative;
-  text-transform: uppercase;
+  width: 110px;
 }
 
 .form-group {
@@ -22,6 +28,6 @@
   width: fit-content;
 }
 
-.form-group input , select {
+.form-group input {
   width: 150px;
 }

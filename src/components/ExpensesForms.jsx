@@ -6,7 +6,7 @@ import '../styles/ExpensesForms.css';
 
 const INITIAL_STATE = {
   id: 0,
-  value: '',
+  value: '0',
   description: '',
   currency: 'USD',
   method: 'Dinheiro',

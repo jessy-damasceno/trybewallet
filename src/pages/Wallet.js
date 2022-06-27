@@ -5,6 +5,7 @@ import { fetchCurrencyAPI } from '../actions';
 import Header from '../components/Header';
 import ExpensesForms from '../components/ExpensesForms';
 import TableItem from '../components/TableItem';
+import '../styles/Wallet.css';
 
 class Wallet extends React.Component {
   componentDidMount() {
