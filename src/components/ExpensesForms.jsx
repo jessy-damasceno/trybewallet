@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addExpense, updateExpense } from '../actions';
+import '../styles/ExpensesForms.css';
 
 const INITIAL_STATE = {
   id: 0,
@@ -17,13 +18,8 @@ class ExpensesForms extends React.Component {
     ...INITIAL_STATE,
   };
 
-  // shouldComponentUpdate(nextProps) {
-  //   const { editor, expenseToEdit } = nextProps;
+  // updateForm = () => {
 
-  //   if (editor && this.state !== expenseToEdit) {
-  //     this.setState({ ...expenseToEdit });
-  //   }
-  //   return true;
   // }
 
   handleChange = ({ target }) => {
@@ -37,7 +33,6 @@ class ExpensesForms extends React.Component {
 
     if (editor) {
       const { expenseToEdit, updateExpenseAction, idToEdit: id } = this.props;
-      console.log(expenseToEdit);
       updateExpenseAction({ ...expenseToEdit, ...this.state, id,
       });
       this.setState({ ...INITIAL_STATE });
@@ -52,7 +47,7 @@ class ExpensesForms extends React.Component {
     const { currencies, editor } = this.props;
 
     return (
-      <form>
+      <form className="form">
         <div className="form-group">
           <label htmlFor="value">
             VALOR:
@@ -140,6 +135,7 @@ class ExpensesForms extends React.Component {
         </div>
 
         <button
+          className="form-btn"
           type="button"
           onClick={ this.handleClick }
         >

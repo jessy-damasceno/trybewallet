@@ -38,7 +38,6 @@ class Login extends React.Component {
 
     return (
       <section className="login__page">
-        {/* <TrybeLogo /> */}
         <form>
           <span className="text-center">login</span>
           <div className="input-container">
@@ -65,7 +64,7 @@ class Login extends React.Component {
           </div>
           <button
             type="button"
-            className={ !isDisabled ? 'btn disabled' : 'btn' }
+            className={ !isDisabled ? 'btn mt-50 disabled' : 'btn mt-50' }
             onClick={ this.handleClick }
             disabled={ !isDisabled }
           >
