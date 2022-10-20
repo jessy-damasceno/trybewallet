@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setEmail } from '../actions';
-// import TrybeLogo from '../components/TrybeLogo';
 import '../styles/Login.css';
 
 class Login extends React.Component {
